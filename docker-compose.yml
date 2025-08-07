@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  pypi-webmirror:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pypi-webmirror
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./config:/app/config           # Mount bandersnatch config
+      - ./scripts:/app/scripts         # Mount scripts directory
+      - ./templates:/app/templates     # Mount HTML templates
+      - ./webserver.log:/app/webserver.log # Mount log file
+      - /mnt/python/data:/mnt/python/data  # Mirror source & output directories
+    environment:
+      - FLASK_ENV=development
+    restart: unless-stopped

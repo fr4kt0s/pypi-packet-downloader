@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title>Bandersnatch Paket Downloader</title>
+    <style>
+      body { font-family: sans-serif; margin: 2em; }
+      label, input, button { font-size: 1rem; }
+      pre { background: #f0f0f0; padding: 1em; }
+      .success { color: green; }
+      .error { color: red; }
+    </style>
+  </head>
+  <body>
+    <h1>Python-Paket herunterladen</h1>
+    <form method="post">
+      <label for="inputText">Paketname:</label><br>
+      <input type="text" id="inputText" name="inputText" required><br><br>
+      <button type="submit">Start</button>
+    </form>
+
+    {% if result %}
+      <h2>Ergebnis</h2>
+      <pre class="{{ 'error' if 'Fehler' in result else 'success' }}">{{ result | safe }}</pre>
+    {% endif %}
+  </body>
+</html>
